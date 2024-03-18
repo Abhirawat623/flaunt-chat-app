@@ -19,9 +19,6 @@ const PORT=3000 || process.env.PORT;
 //auth routes
 app.use("/api/auth",authRouter);
 
-
-
-
 mongoose.connection.once("open",()=>{
 app.listen(process.env.PORT || 
     PORT,()=>
