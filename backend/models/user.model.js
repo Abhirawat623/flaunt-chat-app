@@ -6,7 +6,8 @@ const UserSchema = new mongoose.Schema({
   password: {type: String,required:true,minlength:6},
   gender: {type: String,required:true,enum:["male","female"]},
   profilepic:{type:String,default:""}
-});
+},
+{timestamps:true});
 
 const User= mongoose.model("User",UserSchema);
 
