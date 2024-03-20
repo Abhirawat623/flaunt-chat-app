@@ -1,5 +1,6 @@
 const Conversation = require("../models/conversation.model");
 const Message = require("../models/message.model");
+// sending messages
 const sendMessageHandler= async (req,res)=>{
 try {
     //when message sent
@@ -24,6 +25,9 @@ const newMessage = new Message({
  if(newMessage){
     conversation.messages.push(newMessage._id)
  }
+ //socket 
+
+ 
  //saving to db
 //  await conversation.save();
 //  await newMessage.save();
@@ -34,5 +38,32 @@ await Promise.all([conversation.save(),newMessage.save()])
 }
 };
 
+//getting messages
+ const getMessageHandler= async (req,res)=>{
 
-module.exports =sendMessageHandler;
+    try {
+      const {id:userToChatId} =req.params;
+      const senderId=req.user._id;
+
+      const conversation = await Conversation.findOne({
+        participants:{$all:[senderId,userToChatId]}
+      }).populate("messages");
+
+      //if there is no conversation
+      if(!conversation)
+      return res.status(200).json([]);
+      
+      const messages=conversation.messages
+
+      res.status(200).json(messages)
+
+
+        
+    } catch (error) {
+        console.log("Error in get messages Handler:",error.message);
+        res.status(500).json({error:"Internal server error"})
+    }
+}
+
+
+module.exports ={sendMessageHandler,getMessageHandler};

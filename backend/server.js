@@ -6,6 +6,7 @@ const cookieParser= require("cookie-parser");
 const mongoConnection= require("./db/MongoConnect");
 const authRouter= require("./routes/auth.router");
 const messageRouter= require("./routes/message.router");
+const userRouter= require("./routes/user.router");
 //dotenv config
 dotenv.config();
 //mongo connect
@@ -24,6 +25,8 @@ const PORT=3000 || process.env.PORT;
 app.use("/api/auth",authRouter);
 //message routes
 app.use("/api/messages",messageRouter);
+//user routes
+app.use("/api/users",userRouter)
 mongoose.connection.once("open",()=>{
 app.listen(process.env.PORT || 
     PORT,()=>
