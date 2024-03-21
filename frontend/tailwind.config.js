@@ -2,7 +2,12 @@
 export default {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
-		extend: {},
+		extend: {
+      spacing: {
+        '92': '22rem',
+      }
+    },
+  
 	},
 	// eslint-disable-next-line no-undef
 	plugins: [require("daisyui")],
