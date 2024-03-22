@@ -3,7 +3,7 @@ import { IoSearchSharp } from "react-icons/io5";
 export const SearchBar=()=>{
     return(
 <form 
- className='flex items-center flex-row w-full'>
+ className='flex items-center flex-row w-full gap-x-2'>
 			<input
 				type='text'
 				placeholder='Search…'
