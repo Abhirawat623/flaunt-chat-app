@@ -1,13 +1,33 @@
+import { useState } from "react";
 import {Link} from "react-router-dom";
+import useLogin from "../customHooks/useLogin";
+import {Toaster} from "react-hot-toast";
 export const Login = () => {
+ //inputs
+ const [inputs,setInputs]=useState({
+  username:"",
+  password:""
+ })
+console.log(inputs)
+ //hooks components
+ const {login,loading}=useLogin();
+ //submitting inputs
+ const handleSubmit=async (event)=>{
+event.preventDefault();
+await login(inputs)
+ }
+
+
+
   return (
     <div className="flex flex-col items-center justify-center flex-wrap  w-full">
+      <Toaster/>
       <div className="w-full p-6 rounded-lg  bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0  ">
         <h1 className="text-3xl font-semibold text-center text-gray-300 cursor-pointer">
           Login
           <span className="text-green-400 cursor-pointer"> FlauntChat</span>
         </h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label className="label p-2">
               <span className="text-base label-text">Username</span>
@@ -16,6 +36,8 @@ export const Login = () => {
               type="text"
               placeholder="Enter username"
               className="w-full input input-bordered h-10"
+              value={inputs.username}
+              onChange={event=>setInputs({...inputs,username:event.target.value})}
             />
           </div>
           <div>
@@ -26,6 +48,8 @@ export const Login = () => {
               type="password"
               placeholder="Enter Password"
               className="w-full input input-bordered h-10"
+              value={inputs.password}
+              onChange={event=>setInputs({...inputs,password:event.target.value})}
             />
           </div>
          <Link to="/signup">
@@ -34,7 +58,7 @@ export const Login = () => {
           </div></Link>
           <div>
             <button className="btn btn-block btn-sm mt-2">
-              <span className="loading loading-dots  "></span>
+            {loading ?(<span className="loading loading-dots  "></span>):(<span>Login</span>)}
             </button>
           </div>
         </form>

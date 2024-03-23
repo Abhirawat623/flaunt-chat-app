@@ -10,7 +10,7 @@ const {setAuthUser}=useAuthContext();
 	const signup = async ({ fullname, username, password, confirmedPassword, gender }) => {
 		const success = handleInputErrors({ fullname, username, password, confirmedPassword, gender });
 		if (!success) return;
-
+          //setting loader true
 		setLoading(true);
 		try {
 			const res = await fetch("/api/auth/register", {
