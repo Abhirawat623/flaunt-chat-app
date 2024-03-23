@@ -1,9 +1,19 @@
 import { BiLogOut } from "react-icons/bi";
+import useLogout from "../../customHooks/useLogout"
 export const LogoutBtn=()=>{
-    return(
+	//importing from hook
+	const {loading,logout}=useLogout()
+	
+	return(
 <div >
-				<BiLogOut className='w-9 h-9 text-white  cursor-pointer' />
-				<span className='loading loading-dots'></span>
+{!loading? (<BiLogOut className='w-9 h-9 text-white  cursor-pointer' onClick={logout}/>):(
+	<span className='loading loading-dots'></span>
+
+
+)}
+
+				
+				
 		</div>
     )
 }
