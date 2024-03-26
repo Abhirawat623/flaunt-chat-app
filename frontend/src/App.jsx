@@ -15,7 +15,7 @@ const {authUser}=useAuthContext();
   <Route path="/" element={authUser ? <Home/> :<Navigate to="/login"/>}/>
   <Route path="/login" element={authUser ? <Navigate to="/"/> : <Login/>}/>
   <Route path="/signup" element={authUser ? <Navigate to="/login"/> : <Signup/>}/>
-  <Route path="/chats" element={<Chats/>}/>
+  <Route path="/chats/:id" element={<Chats/>}/>
 </Routes>
    </Fragment>  )
 }

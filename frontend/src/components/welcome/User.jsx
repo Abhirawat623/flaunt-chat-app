@@ -1,15 +1,19 @@
 import useUser from "../../zustand/useUser";
-
+import {useNavigate} from "react-router-dom"
 export const User = ({ user, emoji, lastIndex }) => {
   //zustand store
   const {selectedUser,setSelectedUser}=useUser();
-
-  const isSelected = selectedUser?._id ===user._id;
-
+//use navigate
+const navigate = useNavigate()
+  const handleUserClicked=()=>{
+    setSelectedUser(user);
+    navigate(`/chats/${user._id}`)
+  }
+console.log(selectedUser)
   return (
     <>
       <div className="flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer"
-      onClick={()=>setSelectedUser(user)}>
+      onClick={handleUserClicked}>
         <div>
           <div className="w-12 rounded-full">
             <img src={user.profilepic} alt="user avatar" />
