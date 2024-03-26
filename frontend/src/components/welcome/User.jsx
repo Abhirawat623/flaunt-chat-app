@@ -1,8 +1,15 @@
+import useUser from "../../zustand/useUser";
+
 export const User = ({ user, emoji, lastIndex }) => {
-  
+  //zustand store
+  const {selectedUser,setSelectedUser}=useUser();
+
+  const isSelected = selectedUser?._id ===user._id;
+
   return (
     <>
-      <div className="flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer">
+      <div className="flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer"
+      onClick={()=>setSelectedUser(user)}>
         <div>
           <div className="w-12 rounded-full">
             <img src={user.profilepic} alt="user avatar" />
