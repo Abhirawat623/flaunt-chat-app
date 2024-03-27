@@ -1,8 +1,13 @@
+import { useSocketContext } from "../../context/SocketContext";
 import useUser from "../../zustand/useUser";
 import {useNavigate} from "react-router-dom"
 export const User = ({ user, emoji, lastIndex }) => {
   //zustand store
   const {selectedUser,setSelectedUser}=useUser();
+  //onlineUsers
+  const {onlineUsers}=useSocketContext();
+  const isOnline = onlineUsers.includes(user._id)
+  console.log(isOnline)
 //use navigate
 const navigate = useNavigate()
   const handleUserClicked=()=>{
@@ -14,7 +19,7 @@ console.log(selectedUser)
     <>
       <div className="flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer"
       onClick={handleUserClicked}>
-        <div>
+        <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img src={user.profilepic} alt="user avatar" />
           </div>
