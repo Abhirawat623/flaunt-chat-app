@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useUser from "../zustand/useUser";
 import toast from "react-hot-toast";
 
-const useGetMessage = () => {
+const useGetMessages = () => {
 	const [loading, setLoading] = useState(false);
 	const { messages, setMessages, selectedUser } = useUser();
 
@@ -26,4 +26,4 @@ const useGetMessage = () => {
 
 	return { messages, loading };
 };
-export default useGetMessage;
+export default useGetMessages;
