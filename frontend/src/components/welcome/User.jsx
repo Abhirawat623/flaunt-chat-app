@@ -5,8 +5,10 @@ export const User = ({ user, emoji, lastIndex }) => {
   //zustand store
   const {selectedUser,setSelectedUser}=useUser();
   //onlineUsers
-  const {onlineUsers}=useSocketContext();
-  const isOnline = onlineUsers.includes(user._id)
+  const { onlineUsers } = useSocketContext();
+  console.log(onlineUsers);
+	const isOnline = onlineUsers.includes(user._id);
+  console.log(user._id)
   console.log(isOnline)
 //use navigate
 const navigate = useNavigate()
@@ -19,7 +21,7 @@ console.log(selectedUser)
     <>
       <div className="flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer"
       onClick={handleUserClicked}>
-        <div className={`avatar ${isOnline ? "online" : ""}`}>
+       <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img src={user.profilepic} alt="user avatar" />
           </div>

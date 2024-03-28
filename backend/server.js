@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose= require("mongoose");
 const dotenv= require("dotenv");
 const cookieParser= require("cookie-parser");
 const mongoConnection= require("./db/MongoConnect");
@@ -8,10 +7,9 @@ const messageRouter= require("./routes/message.router");
 const userRouter= require("./routes/user.router");
 //socket
 const {app,server}=require("./socket/socket");
+
 //dotenv config
 dotenv.config();
-//mongo connect
-mongoConnection()
 //uses json files
 app.use(express.json());
 //uses cookies to pasre to verify user
@@ -21,7 +19,7 @@ app.get("/",(req,res)=>{
     res.send("hello devs !")
 })
 //Port
-const PORT=3000 || process.env.PORT;
+const PORT=process.env.PORT || 8000 ;
 //auth routes
 app.use("/api/auth",authRouter);
 //message routes
@@ -29,9 +27,7 @@ app.use("/api/messages",messageRouter);
 //user routes
 app.use("/api/users",userRouter)
 
-mongoose.connection.once("open",()=>{
-server.listen(process.env.PORT || 
-    PORT,()=>
-    console.log("hello,server is running")
-)
-})
+server.listen(PORT, () => {
+	mongoConnection()
+	console.log(`Server Running on port ${PORT}`);
+});
