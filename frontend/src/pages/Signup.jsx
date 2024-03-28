@@ -3,6 +3,7 @@ import {GenderCheckBox}from "../components/GenderCheckBox";
 import  { Toaster } from 'react-hot-toast';
 import useSignup from "../customHooks/useSignup";
 import {Link} from "react-router-dom";
+import { ThemeChanger } from "../components/ThemeChanger"
 export const Signup = () => {
   const { loading, signup } = useSignup();
     //inputs
@@ -28,8 +29,9 @@ const handleSubmit = async (e) => {
   return (
     <div className="flex flex-col items-center justify-center ">
       <Toaster/>
+      <span className="fixed bottom-10 right-4"><ThemeChanger/></span>
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 ">
-        <h1 className="text-3xl font-semibold text-center text-gray-300 cursor-pointer">
+        <h1 className="text-3xl font-semibold text-center  text-black-800   cursor-pointer">
           Sign Up <span className="text-green-500 cursor-pointer">FlauntChat</span>
         </h1>
         <form onSubmit={handleSubmit}>
@@ -87,7 +89,7 @@ const handleSubmit = async (e) => {
           Already our user?
           </div></Link>
           <div>
-          <button className='btn btn-block btn-sm mt-2 border border-slate-700' disabled={loading}>
+          <button className='btn btn-block btn-sm mt-2' disabled={loading}>
 							{loading ? <span className='loading loading-spinner'></span> : "Sign Up"}
 						</button>
           </div>

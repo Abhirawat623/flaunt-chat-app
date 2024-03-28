@@ -6,6 +6,8 @@ export const User = ({ user, emoji, lastIndex }) => {
   const {selectedUser,setSelectedUser}=useUser();
   //onlineUsers
   const { onlineUsers } = useSocketContext();
+  //selected user
+  const isSelected = selectedUser?._id === user._id;
   console.log(onlineUsers);
 	const isOnline = onlineUsers.includes(user._id);
   console.log(user._id)
@@ -19,7 +21,7 @@ const navigate = useNavigate()
 console.log(selectedUser)
   return (
     <>
-      <div className="flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer"
+      <div className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-green-600" : ""}`}
       onClick={handleUserClicked}>
        <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
@@ -29,7 +31,7 @@ console.log(selectedUser)
 
         <div className="flex flex-col flex-1">
           <div className="flex gap-3 justify-between">
-            <p className="font-bold text-gray-200">{user.fullname}</p>
+            <p className="font-bold light:text-black m-200">{user.fullname}</p>
             <span className="text-xl">{emoji}</span>
           </div>
         </div>

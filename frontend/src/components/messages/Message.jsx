@@ -10,7 +10,7 @@ const fromHere = message.senderId ===authUser._id;
 const formattedTime= timeExtract(message.createdAt)
 const chatClassName = fromHere? "chat-end":"chat-start";
 const profilePic= fromHere ? authUser.profilepic: selectedUser.profilepic;
-const bubbleBgColor=fromHere ? 'bg-violet-400':"bg-orange-300"
+const bubbleBgColor=fromHere ? 'bg-violet-500 ':"bg-orange-500"
 const vibrateClass= message.shouldVibrate ? "shake":""
     return(
         <div className={`chat ${chatClassName}`}>

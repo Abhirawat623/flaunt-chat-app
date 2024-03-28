@@ -2,6 +2,7 @@ import { useState } from "react";
 import {Link} from "react-router-dom";
 import useLogin from "../customHooks/useLogin";
 import {Toaster} from "react-hot-toast";
+import { ThemeChanger } from "../components/ThemeChanger"
 export const Login = () => {
  //inputs
  const [inputs,setInputs]=useState({
@@ -20,17 +21,18 @@ await login(inputs)
 
 
   return (
-    <div className="flex flex-col items-center justify-center flex-wrap  w-full">
+    <div className="flex flex-col items-center justify-center flex-wrap w-full">
       <Toaster/>
+      <span className="fixed bottom-10 right-4"><ThemeChanger/></span>
       <div className="w-full p-6 rounded-lg  bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0  ">
-        <h1 className="text-3xl font-semibold text-center text-gray-300 cursor-pointer">
+        <h1 className="text-3xl font-semibold text-center light:text-black cursor-pointer">
           Login
-          <span className="text-green-400 cursor-pointer"> FlauntChat</span>
+          <span className="text-green-400  cursor-pointer"> FlauntChat</span>
         </h1>
         <form onSubmit={handleSubmit}>
           <div>
             <label className="label p-2">
-              <span className="text-base label-text">Username</span>
+              <span className="text-base light:text-black label-text">Username</span>
             </label>
             <input
               type="text"
@@ -53,7 +55,7 @@ await login(inputs)
             />
           </div>
          <Link to="/signup">
-          <div className="pt-4 text-sky-400 text-center cursor-pointer">
+          <div className="pt-4 text-sky-400  text-center cursor-pointer">
           New user?
           </div></Link>
           <div>

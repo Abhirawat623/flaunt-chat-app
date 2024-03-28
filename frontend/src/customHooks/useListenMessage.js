@@ -18,4 +18,5 @@ const useListenMessage = () => {
 		return () => socket?.off("newMessage");
 	}, [socket, setMessages, messages]);
 };
+
 export default useListenMessage;

@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { BsSend } from "react-icons/bs";
 import useSendMessage from "../../customHooks/useSendMessage";
-
+import toast from "react-hot-toast"
 export const MessageInput = () => {
 	const [message, setMessage] = useState("");
 	const { loading, sendMessage } = useSendMessage();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!message) return;
+		if (!message) {toast.error("Please write something")}
+		else{
+		
 		await sendMessage(message);
-		setMessage("");
+		setMessage("");}
 	};
 
 	return (
@@ -24,7 +26,7 @@ export const MessageInput = () => {
 					onChange={(e) => setMessage(e.target.value)}
 				/>
 				<button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3'>
-					{loading ? <div className='loading loading-spinner'></div> : <BsSend />}
+					{loading ? <div className='loading loading-spinner'></div> : <span className="text-white"><BsSend /></span>}
 				</button>
 			</div>
 		</form>
