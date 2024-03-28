@@ -1,21 +1,21 @@
-// import { useEffect } from "react";
-// import {useUser} from "../zustand/useUser"
-// import tuneSound from "../assets/sounds/notification.mp3";
-// const useListenMessage=()=>{
-// const {socket} =useSocketContext();
-// const {messages,setMessages} =  useUser()
+import { useEffect } from "react";
+import useUser from "../zustand/useUser"
 
-// useEffect(()=>{
-// socket?.on("newMessage",(newMessage)=>{
-//     newMessage.shouldShake= true;
-//     const sound = new Audio(tuneSound);
-//     sound.play();
-//     setMessages([...messages,newMessage])
-// })
+import notificationSound from "../assets/sound/notification.mp3";
+import {useSocketContext} from "../context/SocketContext";
+const useListenMessage = () => {
+	const { socket } = useSocketContext();
+	const { messages, setMessages } = useUser();
 
-// return ()=> socket?.off("newMessage")
+	useEffect(() => {
+		socket?.on("newMessage", (newMessage) => {
+			newMessage.shouldVibrate =true;
+			const sound = new Audio(notificationSound);
+			sound.play();
+			setMessages([...messages, newMessage]);
+		});
 
-// },[socket,setMessages,messages])
-
-// }
-// export default useListenMessage;
+		return () => socket?.off("newMessage");
+	}, [socket, setMessages, messages]);
+};
+export default useListenMessage;

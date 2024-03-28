@@ -2,11 +2,13 @@ import { useEffect, useRef } from "react";
 import {Message} from "./Message";
 import { MessageSkeleton } from "../../skeleton/MessageSkeleton";
 import useGetMessage from "../../customHooks/useGetMessage";
+import useListenMessage from "../../customHooks/useListenMessage";
 
 export const Messages=()=>{
 const {messages,loading}=useGetMessage();
 console.log(messages)
-// useListenMessages();
+//listen messages
+useListenMessage();
 const lastMessageRef = useRef();
 
 useEffect(() => {
@@ -15,7 +17,7 @@ useEffect(() => {
     }, 100);
 }, [messages]);
 return (
-    <div className='px-4 flex-1 overflow-auto'>
+    <div className='px-4 flex-1 overflow-auto z-0'>
         {!loading &&
             messages.length > 0 &&
             messages.map((message) => (
