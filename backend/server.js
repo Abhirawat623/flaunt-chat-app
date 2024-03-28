@@ -1,3 +1,4 @@
+const path=require("path");
 const express = require("express");
 const dotenv= require("dotenv");
 const cookieParser= require("cookie-parser");
@@ -7,7 +8,7 @@ const messageRouter= require("./routes/message.router");
 const userRouter= require("./routes/user.router");
 //socket
 const {app,server}=require("./socket/socket");
-
+const _dirname = path.resolve();
 //dotenv config
 dotenv.config();
 //uses json files
@@ -26,6 +27,12 @@ app.use("/api/auth",authRouter);
 app.use("/api/messages",messageRouter);
 //user routes
 app.use("/api/users",userRouter)
+//be and fe connected
+app.use(express.static(path.join(_dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(_dirname, "frontend", "dist", "index.html"));
+});
 
 server.listen(PORT, () => {
 	mongoConnection()
