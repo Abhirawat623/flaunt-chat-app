@@ -1,6 +1,6 @@
 
 import { Fragment } from 'react'
-import {Home,Login,Signup,Chats} from "./pages/index";
+import {Home,Login,Signup,Chats,PageNotFound} from "./pages/index";
 import {Routes,Route,Navigate} from "react-router-dom";
 import { useAuthContext } from './context/AuthContext';
 import './App.css'
@@ -16,6 +16,7 @@ const {authUser}=useAuthContext();
   <Route path="/login" element={authUser ? <Navigate to="/"/> : <Login/>}/>
   <Route path="/signup" element={authUser ? <Navigate to="/login"/> : <Signup/>}/>
   <Route path="/chats/:id" element={<Chats/>}/>
+  <Route path="*" element={<PageNotFound/>}/>
 </Routes>
    </Fragment>  )
 }
