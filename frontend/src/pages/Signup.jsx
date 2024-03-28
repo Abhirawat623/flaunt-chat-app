@@ -3,6 +3,7 @@ import {GenderCheckBox}from "../components/GenderCheckBox";
 import  { Toaster } from 'react-hot-toast';
 import useSignup from "../customHooks/useSignup";
 import {Link} from "react-router-dom";
+import { Footer } from "../components/Footer";
 import { ThemeChanger } from "../components/ThemeChanger"
 export const Signup = () => {
   const { loading, signup } = useSignup();
@@ -29,7 +30,7 @@ const handleSubmit = async (e) => {
   return (
     <div className="flex flex-col items-center justify-center ">
       <Toaster/>
-      <span className="fixed bottom-10 right-4"><ThemeChanger/></span>
+      <span className="fixed bottom-16 right-4"><ThemeChanger/></span>
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 ">
         <h1 className="text-3xl font-semibold text-center  text-black-800   cursor-pointer">
           Sign Up <span className="text-green-500 cursor-pointer">FlauntChat</span>
@@ -95,6 +96,7 @@ const handleSubmit = async (e) => {
           </div>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 };
