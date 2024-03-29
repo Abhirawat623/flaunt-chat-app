@@ -9,7 +9,7 @@ const userRouter= require("./routes/user.router");
 //socket
 const {app,server}=require("./socket/socket");
 //directory to both frontend and backend
-const _dirname = path.resolve();
+
 //dotenv config
 dotenv.config();
 //uses json files
@@ -29,10 +29,10 @@ app.use("/api/messages",messageRouter);
 //user routes
 app.use("/api/users",userRouter)
 //backend and frontend connected
-app.use(express.static(path.join(_dirname, "/frontend/dist")));
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 app.get("*", (req, res) => {
-	res.sendFile(path.join(_dirname, "frontend", "dist", "index.html"));
+	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
 server.listen(PORT, () => {
