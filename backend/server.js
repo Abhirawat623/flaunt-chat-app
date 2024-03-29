@@ -22,7 +22,7 @@ app.get("/",(req,res)=>{
     res.send("hello devs !")
 })
 //Port
-const PORT=process.env.PORT || 5000 ;
+const PORT=process.env.PORT;
 //auth routes
 app.use("/api/auth",authRouter);
 //message routes
@@ -37,7 +37,7 @@ app.get("*", (req, res) => {
 });
 
 
-server.listen(PORT, () => {
+server.listen(process.env.PORT, () => {
 	mongoConnection()
-	console.log(`Server Running on port ${PORT}`);
+	console.log(`Server Running on port ${process.env.PORT}`);
 });
