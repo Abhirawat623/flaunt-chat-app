@@ -8,6 +8,7 @@ const messageRouter= require("./routes/message.router");
 const userRouter= require("./routes/user.router");
 //socket
 const {app,server}=require("./socket/socket");
+//directory to both frontend and backend
 const _dirname = path.resolve();
 //dotenv config
 dotenv.config();
@@ -27,7 +28,7 @@ app.use("/api/auth",authRouter);
 app.use("/api/messages",messageRouter);
 //user routes
 app.use("/api/users",userRouter)
-//be and fe connected
+//backend and frontend connected
 app.use(express.static(path.join(_dirname, "/frontend/dist")));
 
 app.get("*", (req, res) => {
