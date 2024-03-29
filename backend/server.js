@@ -8,7 +8,9 @@ const messageRouter= require("./routes/message.router");
 const userRouter= require("./routes/user.router");
 //socket
 const {app,server}=require("./socket/socket");
-const ___dirname=path.resolve();
+let currentDirectory = __dirname;
+console.log("11:"+currentDirectory)
+currentDirectory=path.resolve();
 //dotenv config
 dotenv.config();
 //uses json files
@@ -20,7 +22,7 @@ app.get("/",(req,res)=>{
     res.send("hello devs !")
 })
 //Port
-const PORT=process.env.PORT || 8000 ;
+const PORT=process.env.PORT || 5000 ;
 //auth routes
 app.use("/api/auth",authRouter);
 //message routes
@@ -28,13 +30,12 @@ app.use("/api/messages",messageRouter);
 //user routes
 app.use("/api/users",userRouter)
 // Serve static files from the "frontend/dist" directory
-const frontendPath = path.join(___dirname, "/frontend/dist");
-app.use(express.static(frontendPath));
+app.use(express.static(path.join(currentDirectory, "/frontend/dist")));
 
-// Serve the frontend index.html for all other routes
 app.get("*", (req, res) => {
-    res.sendFile(path.join(___dirname,"frontend","dist", "index.html"));
+	res.sendFile(path.join(currentDirectory, "frontend", "dist", "index.html"));
 });
+
 
 server.listen(PORT, () => {
 	mongoConnection()

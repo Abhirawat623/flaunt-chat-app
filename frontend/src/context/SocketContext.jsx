@@ -16,7 +16,7 @@ export const SocketContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (authUser) {
-			const socket = io("https://flaunt-chat-app.vercel.app/", {
+			const socket = io("http://localhost:8000/", {
 				query: {
 					userId: authUser._id,
 				},
